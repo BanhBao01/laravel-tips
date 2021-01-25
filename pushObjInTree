@@ -1,0 +1,38 @@
+var obj = {
+  id: 23,
+  name: 'Test1',
+  children: [{
+       id: 24,
+       name: 'Test2',
+       children: []
+  },{
+       id: 25,
+       name: 'Test2',
+       children: []
+  }],
+};
+
+var objToBePushed = {
+  id: 26,
+  name: 'Test3',
+  children: [{
+       id: 27,
+       name: 'Test4',
+       children: []
+  }]
+};
+
+function findNode(nodeId, json, node){
+  if(node.id == nodeId){
+      node.children.push(json);
+  }
+  else{
+
+      for(var i=0; i<node.children.length; i++){
+          findNode(nodeId, json, node.children[i]);
+      }
+  }
+}
+
+findNode(24, objToBePushed, obj);
+console.log(obj);
